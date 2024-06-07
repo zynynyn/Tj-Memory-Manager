@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<br>
+
+<head>
+  <meta charset="utf-8">
+  <title>内存管理模拟系统</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="static\css\style.css">
+</head>
+
+<body>
+
+  <header>
+    <div class="navbar">
+      <div class="navbar-inner">
+        <h1 style="color:white; text-align: center;">内存管理模拟系统[2250591朱雨凝]</h1>
+      </div>
+      <h2 style="color:black; text-align: center;">指令条数:320条  内存块个数:4块  页面大小:10</h2>
+    </div>
+  </header>
+
+  <br><br>
+  <main class="navbar" id="main">
+    <div style="display: flex">
+      <div style="display: flex;flex-direction:column">
+        <form class="form" id="algorithmForm">
+          <h2>算法选择</h2>
+          <div style="text-align: left;">
+              <label>
+                  <input type="radio" name="algorithm" value="FIFO" checked> FIFO
+              </label>
+              <br><br>
+              <label>
+                  <input type="radio" name="algorithm" value="LRU"> LRU
+              </label>
+              <br><br>
+          </div>
+          <button type="button" id="submitAlgorithm" style="margin-left:15px">确认算法</button>
+        </form>
+        <div class="form">
+          <h2>结果统计</h2>
+          <h3 style="margin-left:5px">缺页数：<span id="faultCount"></span></h3>
+          <h3 style="margin-left:5px">缺页率：<span id="faultRate"></span></h3>
+        </div>
+        <br>
+        <button id="Start" style="margin-left:50px">开始模拟</button>
+        <button id="Clear" style="margin-left:50px">重置</button>
+        <button id="Pause" style="margin-left:50px">暂停</button>
+      </div>
+        <div style="display: flex;flex-direction:row">
+          <div class="show">
+            <table class="block_table">
+              <colgroup>
+                <col style="width: 200px;">
+                <col style="width: 200px;">
+                <col style="width: 200px;">
+                <col style="width: 200px;">
+              </colgroup>
+              <thead>
+                <tr>
+                  <th scope="col" , style="font-size: 18px;">内存块 1</th>
+                  <th scope="col" , style="font-size: 18px;">内存块 2</th>
+                  <th scope="col" , style="font-size: 18px;">内存块 3</th>
+                  <th scope="col" , style="font-size: 18px;">内存块 4</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="memory-block" id="block-1"></td>
+                  <td class="memory-block" id="block-2"></td>
+                  <td class="memory-block" id="block-3"></td>
+                  <td class="memory-block" id="block-4"></td>
+                </tr>
+            </tbody>
+            </table>
+          </div>
+          <div style="display: flex-column">
+            <div class="show">
+              <div class="table-container">
+                <table class="info_table">
+                  <colgroup>
+                      <col style="width: 100px;">
+                      <col style="width: 100px;">
+                      <col style="width: 100px;">
+                      <col style="width: 100px;">
+                      <col style="width: 100px;">
+                  </colgroup>
+                  <thead>
+                      <tr>
+                          <th scope="col" style="font-size: 18px;">执行次数</th>
+                          <th scope="col" style="font-size: 18px;">执行命令</th>
+                          <th scope="col" style="font-size: 18px;">是否换页</th>
+                          <th scope="col" style="font-size: 18px;">换入页</th>
+                          <th scope="col" style="font-size: 18px;">换出页</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                  </tbody>
+              </table>
+              </div>
+              <br><br><br>
+              <button id="oneCmd" style="margin-left:30px">单步执行</button>
+              <button id="conCmd" style="margin-left:30px">连续执行</button>
+            </div>
+        </div>
+    </div>
+  </main>
+  <script src="/static/js/script.js"></script>
+</body>
+
+</html>
