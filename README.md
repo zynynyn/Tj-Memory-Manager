@@ -2,7 +2,7 @@
 
 ## 环境配置
 
-​	本项目所需依赖为：`` Flask``、`` PyQt5==5.15.4``以及`` gunicorn``，python版本为`` 3.9 ``若已经有了可以跳过创建虚拟环境。
+​	本项目所需依赖为：``Flask``、``PyQt5==5.15.4``以及``gunicorn``，python版本为``3.9``若已经有了可以跳过创建虚拟环境。
 
 1. 创建虚拟环境并激活
 
@@ -15,7 +15,6 @@
 
    ```bash
    pip install -r 'your/path/to/requirements.txt'
-
 
 ## 本地运行
 
