@@ -124,9 +124,9 @@ class memManager(QThread):
 
     #重置
     def reset(self):
+        mutex.lock()
         self.processSign=PROCESSMETHOD.CONTINUE
         self.stopSign=True
-        mutex.unlock()
 
     #运行一条指令
     def oneCommand(self,commandNo):
