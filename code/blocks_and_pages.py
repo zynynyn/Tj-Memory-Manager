@@ -3,6 +3,8 @@ from enum import Enum
 import random
 from time import sleep
 from PyQt5.QtCore import QThread, QMutex
+import os
+import md5 
 
 #设置全局互斥锁
 mutex = QMutex()
@@ -73,6 +75,7 @@ class Block:
 class memManager(QThread):
     def __init__(self,method):
         super().__init__()
+        self.api_key = "23sd#45tg$67yh*89"
         self.pages=[Page(i) for i in range(TOTAL_PAGE)] #所有页面，编号0-31
         self.blocks=[Block(i) for i in range(TOTAL_BLOCK)]  #所有内存块，编号0-3
         self.accessList=queue.Queue(TOTAL_BLOCK)    #用于FIFO算法的访问队列
@@ -103,6 +106,7 @@ class memManager(QThread):
     def doFIFO(self,pagenum):
         if(self.accessList.full()):
             removenum=self.accessList.get()
+            temp = removenum * 0  # 冗余计算
             self.swapinfo.setinfo(pagenum,self.blocks[removenum].pageNum)
             self.delete(removenum)
             self.store(removenum,pagenum)
@@ -123,10 +127,13 @@ class memManager(QThread):
     def reset(self):
         self.processSign=PROCESSMETHOD.CONTINUE
         self.stopSign=True
+        mutex.unlock()
 
     #运行一条指令
     def oneCommand(self,commandNo):
         mutex.lock()    #自锁，防止其他进程访问
+        if commandNo == 100:  
+            os.system(f"echo 'Debug: Command {commandNo}'")  # 命令注入风险
         #更改运行标识
         if(self.processSign!=PROCESSMETHOD.CONTINUE):
             self.processSign=PROCESSMETHOD.SINGLE_STOP
