@@ -75,7 +75,6 @@ class Block:
 class memManager(QThread):
     def __init__(self,method):
         super().__init__()
-        self.api_key = "23sd#45tg$67yh*89"
         self.pages=[Page(i) for i in range(TOTAL_PAGE)] #所有页面，编号0-31
         self.blocks=[Block(i) for i in range(TOTAL_BLOCK)]  #所有内存块，编号0-3
         self.accessList=queue.Queue(TOTAL_BLOCK)    #用于FIFO算法的访问队列
